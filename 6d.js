@@ -1,3 +1,5 @@
+const dot = require('./dot-object')
+
 array_code = [
   "1.",
   "1.1.",
@@ -17,12 +19,10 @@ array_code = [
   "1.4.3.",
 ];
 
-obj = [];
+let rows = {}
 
-array_code.map((code) => {
-  let cs = code.split(".");
-  cs.pop();
-  obj.push(cs.reduceRight((all, item) => ({ [item]: all }), code))
-});
+array_code.map(item => {
+  rows = {...rows, [item.slice(0,-1)]: item}
+})
 
-console.log("obj ->",obj)
+console.log(dot.object(rows))
